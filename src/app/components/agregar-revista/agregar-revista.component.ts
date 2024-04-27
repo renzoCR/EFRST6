@@ -85,7 +85,8 @@ export class AgregarRevistaComponent {
                     tipoRevista:{
                         idDataCatalogo:-1
                     }
-                }
+                };
+                this.formsRegistra.reset();
               },
             );
 
