@@ -56,14 +56,16 @@ export class AgregarEjemploComponent {
         this.ejemplo.usuarioRegistro = this.objUsuario;
         this.ejemploService.registrar(this.ejemplo).subscribe(
           x=>{
-            Swal.fire({
-              icon: 'info',
-              title: 'Resultado del Registro',
-              text: x.mensaje,
-            })
+                Swal.fire({ icon: 'info', title: 'Resultado del Registro', text: x.mensaje, });
+                this.ejemplo = {
+                  descripcion: "",
+                  pais: {
+                    idPais: -1
+                  }
+            };
           },
         );
-  }
+   }
 
   validaDescripcion(control: FormControl) {
     console.log(">>> validaDescripcion [inicio] " + control.value);
