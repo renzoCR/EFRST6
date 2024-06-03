@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppSettings } from '../app.settings';
-import { Alumno } from '../models/alumno.model';
 import { Pais } from '../models/pais.model';
 import { DataCatalogo } from '../models/dataCatalogo.model';
+import { Ubigeo } from '../models/ubigeo.model';
+import { Usuario } from '../models/usuario.model';
 
 const baseUrlUtil = AppSettings.API_ENDPOINT+ '/util';
 
@@ -19,38 +20,45 @@ export class UtilService {
     return this.http.get<Pais[]>(baseUrlUtil+"/listaPais");
   }
 
-  listaAlumno():Observable<Alumno[]>{
-    return this.http.get<Alumno[]>(baseUrlUtil+"/listaAlumno");
+  listarDepartamento(): Observable<string[]>{
+    return this.http.get<string[]>(baseUrlUtil+"/listaDepartamentos");
   }
 
-  listaCategoriaDeLibro():Observable<DataCatalogo[]>{
-    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaCategoriaDeLibro");
+  listaProvincias(paramDep:any): Observable<string[]>{
+    return this.http.get<string[]>(baseUrlUtil+"/listaProvincias/"+paramDep);
   }
 
-  listaTipoProveedor():Observable<DataCatalogo[]>{
-    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaTipoProveedor");
+  listaDistritos(paramDep:any,paramProv:any): Observable<Ubigeo[]>{
+    return this.http.get<Ubigeo[]>(baseUrlUtil+"/listaDistritos/"+paramDep+"/"+paramProv);
   }
 
-  listaModalidadAlumno():Observable<DataCatalogo[]>{
-    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaModalidadAlumno");
+  listaTipoEntidadBancaria():Observable<DataCatalogo[]>{
+    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaTipoEntidadBancaria");
   }
 
-  listaGradoAutor():Observable<DataCatalogo[]>{
-    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaGradoAutor");
+  listaTipoMoneda():Observable<DataCatalogo[]>{
+    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaTipoMoneda");
   }
 
-  listaTipoLibroRevista():Observable<DataCatalogo[]>{
-    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaTipoLibroRevista");
+  listaDiasPrestamo():Observable<DataCatalogo[]>{
+    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaDiasPrestamo");
   }
 
-  listaTipoSala():Observable<DataCatalogo[]>{
-    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaTipoSala");
+  listaEstadoSolicitud():Observable<DataCatalogo[]>{
+    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaEstadoSolicitud");
   }
 
-  listaSede():Observable<DataCatalogo[]>{
-    return this.http.get<DataCatalogo[]>(baseUrlUtil+"/listaSede");
+  listaJefePrestamistaTotales():Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(baseUrlUtil+"/listaJefePrestamistaTotales");
   }
 
+  listaPrestamistaDeUnJefe(param:any): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(baseUrlUtil+"/listaPrestamistaDeUnJefe/"+param);
+  }
+
+  listaPrestamistariosDeUnPrestamista(param:any): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(baseUrlUtil+"/listaPrestamistariosDeUnPrestamista/"+param);
+  }
 }
 
 
