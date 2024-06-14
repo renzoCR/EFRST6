@@ -15,13 +15,5 @@ export class EntidadFinanciera {
     usuarioActualiza?:Usuario;
 }
 
-  idEntidadFinanciera?: number;
-  nombre?: string;
-  gerente?: string;
-  tipoEntidad?: DataCatalogo;
-  ubigeo?: Ubigeo;
-  estado?: number;
-  usuarioRegistro?: Usuario;
-  usuarioActualiza?: Usuario;
-}
+
 
