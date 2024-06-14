@@ -43,14 +43,15 @@ export class AgregarEntidadFinancieraComponent {
   }
 
   formRegistrar = this.formBuilder.group({
-    validaNombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ]{3,30}')],this.validaNombre.bind(this)],
-    validaGerente: ['', [Validators.required, Validators.pattern('[a-zA-Z ]{3,30}')]],
+    validaNombre: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]{3,30}')], this.validaNombre.bind(this)],
+    validaGerente: ['', [Validators.required, Validators.pattern('[a-zA-Z ]{3,45}')]],
     validaDepartamento: ['', [Validators.min(1)]],
     validaProvincia: ['', [Validators.min(1)]],
     validaDistrito: ['', [Validators.min(1)]],
     validaLider: ['', [Validators.min(1)]],
     validaTipoEntidad: ['', [Validators.required]]
 });
+
 
   lstTipo : DataCatalogo[] = [];
   departamentos : string[] = [];

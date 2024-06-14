@@ -17,10 +17,11 @@ export class EntidadFinancieraService {
     
   }
 
-  validarNombreRegistro(nombre: string):Observable<any>{
+  validarNombreRegistro(nombre: string): Observable<any> {
     console.log('>>> Service >> validarNombreRegistro [inicio]' + nombre);
-    return this.http.get<any>(baseUrl+'/validarNombreRegistro?descripcion='+nombre);
+    return this.http.get<any>(`${baseUrl}/validarNombreRegistro?nombre=${nombre}`);
   }
+  
 
   validarGerenteRegistro(gerente: string):Observable<any>{
     console.log('>>> Service >> validarGerenteRegistro [inicio]' + gerente);
