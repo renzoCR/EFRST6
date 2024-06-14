@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 const mensajesDeError: { [key: string]: string | Function } = {
   required: 'Este campo es requerido',
 };
+export function booleanValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    return typeof value === 'boolean' ? null : { notBoolean: true };
+  };
+}
 @Injectable({
   providedIn: 'root',
 })
