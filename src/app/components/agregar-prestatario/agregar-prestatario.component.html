@@ -1,2 +1,49 @@
 <app-menu></app-menu>
-<p>agregar-prestatario works!</p>
+<!-- agregar-prestatario.component.html -->
+<div>
+    <h2>Registrar Prestatario</h2>
+    <form  (ngSubmit)="onSubmit()">
+        <!-- Nombres -->
+        <label>
+            Nombres:
+            <input type="text" [(ngModel)]="prestatario.nombres"  name="nombres" id="nombres" required>
+        </label>
+        <!-- Apellidos -->
+        <label>
+            Apellidos:
+            <input type="text" [(ngModel)]="prestatario.apellidos" name="apellidos" id="apellidos" required>
+        </label>
+        <!-- DNI -->
+        <label>
+            DNI:
+            <input type="number" [(ngModel)]="prestatario.dni"  name="dni" id="dni" required>
+        </label>
+        <!-- Login -->
+        <label>
+            Login:
+            <input type="text" [(ngModel)]="prestatario.login"   name="login" id="login" required>
+        </label>
+        <!-- Correo -->
+        <label>
+            Correo:
+            <input type="email" [(ngModel)]="prestatario.correo"  name="correo" id="correo"  required>
+        </label>
+        <!-- Contraseña -->
+        <label>
+            Contraseña:
+            <input type="password" [(ngModel)]="prestatario.password"  name="password" id="password"  required>
+        </label>
+        <!-- Fecha de Nacimiento -->
+        <label>
+            Fecha de Nacimiento:
+            <input type="date" [(ngModel)]="prestatario.fechaNacimiento" name="fechaNacimiento" id="fechaNacimiento"   required>
+        </label>
+        <!-- Dirección -->
+        <label>
+            Dirección:
+            <input type="text" [(ngModel)]="prestatario.direccion"  name="direccion" id="direccion" required>
+        </label>
+        <!-- Botón para registrar -->
+        <button class="btn btn-success" type="submit">Registrar</button>
+    </form>
+</div>
