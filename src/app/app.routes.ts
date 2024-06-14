@@ -25,10 +25,10 @@ export const routes: Routes = [
     {path:"verRegistroPrestatario", component:AgregarPrestatarioComponent },
     {path:"verRegistroSolicitudPrestamo", component:AgregarSolicitudPrestamoComponent },
     {path:"verRegistroEjemplo", component:AgregarEjemploComponent },
-  
-  
+
+
     { path: '', component: IndexComponent },
     { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '', pathMatch: 'full' }
   ];
-  
+
