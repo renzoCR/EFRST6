@@ -6,6 +6,7 @@ import { Pais } from '../models/pais.model';
 import { DataCatalogo } from '../models/dataCatalogo.model';
 import { Ubigeo } from '../models/ubigeo.model';
 import { Usuario } from '../models/usuario.model';
+import { Catalogo } from '../models/catalogo.model';
 import { EntidadFinanciera } from '../models/entidad-financiera.model';
 
 const baseUrlUtil = AppSettings.API_ENDPOINT+ '/util';
@@ -63,7 +64,9 @@ export class UtilService {
   listaEntidadesFinancierasPorTipo(tipoEntidadId: number): Observable<EntidadFinanciera[]> {
     return this.http.get<EntidadFinanciera[]>(`${baseUrlUtil}/listaEntidadesFinancierasPorTipo/${tipoEntidadId}`);
   }
-
+  listaCatalogo(idCatalogo: number): Observable<string[]> {
+    return this.http.get<string[]>(baseUrlUtil+"/listaCatalogo");
+  }
 
 }
 
