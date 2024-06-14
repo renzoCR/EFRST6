@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-agregar-prestatario',
+  selector: 'app-agregar-prestatario' ,
   standalone: true,
   imports: [AppMaterialModule, FormsModule, CommonModule, MenuComponent, ReactiveFormsModule],
   templateUrl: './agregar-prestatario.component.html',
