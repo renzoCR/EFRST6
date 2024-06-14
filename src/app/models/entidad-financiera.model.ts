@@ -4,6 +4,7 @@ import { Ubigeo } from "./ubigeo.model";
 import { Usuario } from "./usuario.model";
 
 export class EntidadFinanciera {
+
     idEntidadFinanciera?:number; 
     nombre?:string;
     gerente?:string; 
@@ -13,3 +14,14 @@ export class EntidadFinanciera {
     usuarioRegistro?:Usuario;
     usuarioActualiza?:Usuario;
 }
+
+  idEntidadFinanciera?: number;
+  nombre?: string;
+  gerente?: string;
+  tipoEntidad?: DataCatalogo;
+  ubigeo?: Ubigeo;
+  estado?: number;
+  usuarioRegistro?: Usuario;
+  usuarioActualiza?: Usuario;
+}
+

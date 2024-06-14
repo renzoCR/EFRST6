@@ -20,7 +20,7 @@ export class ProdInterceptorService implements HttpInterceptor {
       request = req.clone({ headers: req.headers
                                 .set('Authorization', 'Bearer ' + token)
                               });
-    
+
       console.log(">> ProdInterceptorService >>> intReq >>> ")
       console.log(request)
     }
