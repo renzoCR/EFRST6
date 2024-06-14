@@ -1,2 +1,104 @@
 <app-menu></app-menu>
-<p>agregar-solicitud-prestamo works!</p>
+
+<div class="container" style="max-width: 700px;">
+  <form [formGroup]="myForm" (ngSubmit)="register()">
+    <div class="row">
+      <mat-toolbar color="primary">
+        <span>Registro de Solicitud Prestamo</span>
+      </mat-toolbar>
+    </div>
+    <div class="grid-container">
+      <div class="grid-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Días</mat-label>
+          <mat-select
+            formControlName="dias"
+            (selectionChange)="onDiaSelected($event)"
+          >
+            <mat-option *ngFor="let dia of diasList" [value]="dia">{{
+              dia.descripcion
+            }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="isValidField('dias')">
+            {{ getFieldError("dias") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="grid-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Capital</mat-label>
+          <mat-select formControlName="capital" (selectionChange)="onCapitalSelected($event)">
+            <mat-option *ngFor="let capital of capitalList" [value]="capital">{{
+              capital.capital
+            }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="isValidField('capital')">
+            {{ getFieldError("capital") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="grid-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Monto a Pagar</mat-label>
+          <input matInput formControlName="montoPagar" type="number" readonly />
+          <mat-error *ngIf="isValidField('montoPagar')">
+            {{ getFieldError("montoPagar") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="grid-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de Inicio del Préstamo</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fechaInicioPrestamo">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="isValidField('fechaInicioPrestamo')">
+            {{ getFieldError('fechaInicioPrestamo') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="grid-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Usuario Prestatario</mat-label>
+          <mat-select formControlName="usuarioPrestatario" >
+            <mat-option
+              *ngFor="let usuario of prestarioList"
+              [value]="usuario"
+              >{{ usuario.nombreCompleto }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="isValidField('usuarioPrestatario')">
+            {{ getFieldError("usuarioPrestatario") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="grid-item full-width">
+        <button mat-raised-button color="primary" type="submit">
+          Registrar
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <style>
+    .grid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .full-width {
+      grid-column: span 2;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</div>
