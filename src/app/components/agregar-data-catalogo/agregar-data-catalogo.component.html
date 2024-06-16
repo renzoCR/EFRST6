@@ -44,14 +44,10 @@
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Tipo</mat-label>
           <mat-select
-            [(ngModel)]="dataCatalogo.descripcion!.tipoEntidad"
-            (selectionChange)="listaTipoEntidadBancaria()"
             formControlName="validaDepartamento"
           >
             <mat-option value="-1">[Seleccione]</mat-option>
-            <mat-option *ngFor="let x of tipoEntidad" [value]="x">
-              {{ x }}
-            </mat-option>
+           
           </mat-select>
           <mat-hint
             style="color: red"
