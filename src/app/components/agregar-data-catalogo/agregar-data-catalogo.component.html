@@ -44,12 +44,9 @@
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Tipo</mat-label>
           <mat-select
-            [(ngModel)]="dataCatalogo.descripcion!.tipoEntidad"
-            (selectionChange)="listaTipoEntidadBancaria()"
-            formControlName="validaDepartamento"
-          >
+             formControlName="validaDepartamento">
             <mat-option value="-1">[Seleccione]</mat-option>
-            <mat-option *ngFor="let x of tipoEntidad" [value]="x">
+            <mat-option *ngFor="let x of " [value]="x">
               {{ x }}
             </mat-option>
           </mat-select>
@@ -65,7 +62,7 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      
+
       <div style="text-align: center; margin-top: 20px;">
         <button
           mat-raised-button
