@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import { Usuario } from '../../models/usuario.model';
 import { map } from 'rxjs';
 
+
 @Component({
   selector: 'app-crud-cuenta-agregar',
   standalone: true,
@@ -129,4 +130,5 @@ export class CrudCuentaAgregarComponent {
           })
       );
   }
+
 }

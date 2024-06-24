@@ -15,7 +15,6 @@ import { Usuario } from '../../models/usuario.model';
 import { map } from 'rxjs';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
 @Component({
   selector: 'app-crud-cuenta-actualizar',
   standalone: true,
@@ -140,4 +139,3 @@ export class CrudCuentaActualizarComponent {
           })
       );
   }
-}

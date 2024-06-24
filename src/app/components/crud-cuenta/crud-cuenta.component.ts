@@ -14,6 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { CrudCuentaActualizarComponent } from '../crud-cuenta-actualizar/crud-cuenta-actualizar.component';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-crud-cuenta',
   standalone: true,

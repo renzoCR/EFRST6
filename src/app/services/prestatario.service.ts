@@ -16,7 +16,7 @@ export class PrestatarioService {
   constructor(private http: HttpClient) { }
 
   registrar(data: Usuario) : Observable<any> {
-    return this.http.post(baseUrlPrueba , data);
+    return this.http.post(baseUrlPrueba +"/registrar", data);
   }
   validaDescripcionRegistra(descripcion: string): Observable<any> {
     console.log('>>> Service >> validaDescripcionRegistra [inicio]' + descripcion);
