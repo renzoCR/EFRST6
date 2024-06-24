@@ -12,6 +12,7 @@ import { AgregarGrupoComponent } from './components/agregar-grupo/agregar-grupo.
 import { AgregarMontoPrestamoComponent } from './components/agregar-monto-prestamo/agregar-monto-prestamo.component';
 import { AgregarPrestatarioComponent } from './components/agregar-prestatario/agregar-prestatario.component';
 import { AgregarSolicitudPrestamoComponent } from './components/agregar-solicitud-prestamo/agregar-solicitud-prestamo.component';
+import { CrudCuentaComponent } from './components/crud-cuenta/crud-cuenta.component';
 
 import { CrudEjemploComponent } from './components/crud-ejemplo/crud-ejemplo.component';
 import { CrudCoordenadaComponent } from './components/crud-coordenada/crud-coordenada.component';
@@ -68,7 +69,7 @@ export const routes: Routes = [
     {path:"verConsultaSolicitudPrestamo", component: ConsultaSolicitudPrestamoComponent },
     {path:"verConsultaEjemplo", component: ConsultaEjemploComponent },
 
-  
+
     { path: '', component: IndexComponent },
     { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '', pathMatch: 'full' }

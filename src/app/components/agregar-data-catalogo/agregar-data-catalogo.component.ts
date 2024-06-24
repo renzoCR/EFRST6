@@ -55,7 +55,7 @@ console.log(">>> constructor  >>> ");
   );
   this.objUsuario.idUsuario = this.tokenService.getUserId();
   console.log(">>> OnInit >>> " + this.lstCatalogo);
-  console.log(">>> OnInit [fin]");      
+  console.log(">>> OnInit [fin]");
   }*/
   registra() {
     console.log(">>> registra [inicio]");
@@ -77,7 +77,7 @@ console.log(">>> constructor  >>> ");
                         idUsuario: -1
                     },
                 }
-          } 
+          }
      );
   }
   validaDescripcion(control: FormControl) {
@@ -90,5 +90,5 @@ console.log(">>> constructor  >>> ");
           })
       );
   }
-  
+
 }

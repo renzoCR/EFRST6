@@ -1,1 +1,85 @@
-<p>crud-cuenta-actualizar works!</p>
+<div class="container">
+  <form [formGroup]="formRegistrar">
+    <div class="row">
+      <mat-toolbar color="primary">
+        <span>Actualizar Cuenta</span>
+      </mat-toolbar>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+      <mat-form-field class="col-md-4">
+        <mat-label>Número</mat-label>
+        <input matInput [(ngModel)]="cuenta.numero" formControlName="validaNumero">
+        <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaNumero.touched">
+          <span *ngIf="formRegistrar.controls.validaNumero.hasError('required')">
+              El número es requerido
+          </span>
+          <span *ngIf="formRegistrar.controls.validaNumero.hasError('pattern')">
+              El número es de 20 caracteres
+          </span>
+          <span *ngIf="formRegistrar.controls.validaNumero.hasError('existeNumero')">
+              El número ya existe
+          </span>
+      </mat-hint>
+      </mat-form-field>
+      <mat-form-field class="col-md-4">
+        <mat-label>Tipo de Entidad</mat-label>
+        <mat-select [(ngModel)]="cuenta.entidadFinanciera!.tipoEntidad!.idDataCatalogo" (selectionChange)="onTipoEntidadChange($event)" formControlName="validaTipoEntidad">
+          <mat-option value="-1">[Seleccione]</mat-option>
+          <mat-option *ngFor="let x of lstTipoEntidad" [value]="x.idDataCatalogo">
+            {{x.descripcion}}
+          </mat-option>
+        </mat-select>
+        <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaTipoEntidad.touched">
+          <span *ngIf="formRegistrar.controls.validaTipoEntidad.hasError('min')">
+              Tipo de Entidad es requerido
+          </span>
+      </mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+      <mat-form-field class="col-md-4">
+        <mat-label>Entidad Financiera</mat-label>
+        <mat-select [(ngModel)]="cuenta.entidadFinanciera!.idEntidadFinanciera" formControlName="validaEntidadFinanciera">
+          <mat-option value="-1">[Seleccione]</mat-option>
+          <mat-option *ngFor="let ef of lstEntidadesFinancieras" [value]="ef.idEntidadFinanciera">
+            {{ef.nombre}}
+          </mat-option>
+        </mat-select>
+        <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaEntidadFinanciera.touched">
+          <span *ngIf="formRegistrar.controls.validaEntidadFinanciera.hasError('min')">
+              Entidad financiera es requerido
+          </span>
+      </mat-hint>
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-label>Moneda</mat-label>
+        <mat-select [(ngModel)]="cuenta.tipoMoneda!.idDataCatalogo" formControlName="validaMoneda">
+          <mat-option value="-1">[Seleccione]</mat-option>
+          <mat-option *ngFor="let x of lstMoneda" [value]="x.idDataCatalogo">
+            {{x.descripcion}}
+          </mat-option>
+        </mat-select>
+        <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaMoneda.touched">
+          <span *ngIf="formRegistrar.controls.validaMoneda.hasError('min')">
+              Moneda es requerido
+          </span>
+      </mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
+      <div mat-dialog-actions>
+        <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid"
+            [mat-dialog-close]="1" (click)="actualiza()">Actualiza
+        </button>
+        <button mat-button type="submit" [mat-dialog-close]="2">Salir
+        </button>
+    </div>
+    </div>
+  </form>
+</div>
+
+
+
