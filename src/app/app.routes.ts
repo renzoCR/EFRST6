@@ -16,7 +16,6 @@ import { CrudCuentaComponent } from './components/crud-cuenta/crud-cuenta.compon
 
 import { CrudEjemploComponent } from './components/crud-ejemplo/crud-ejemplo.component';
 import { CrudCoordenadaComponent } from './components/crud-coordenada/crud-coordenada.component';
-import { CrudCuentaComponent } from './components/crud-cuenta/crud-cuenta.component';
 import { CrudDataCatalogoComponent } from './components/crud-data-catalogo/crud-data-catalogo.component';
 import { CrudMontoPrestamoComponent } from './components/crud-monto-prestamo/crud-monto-prestamo.component';
 import { CrudPrestatarioComponent } from './components/crud-prestatario/crud-prestatario.component';
@@ -46,18 +45,18 @@ export const routes: Routes = [
     {path:"verRegistroPrestatario", component:AgregarPrestatarioComponent },
     {path:"verRegistroSolicitudPrestamo", component:AgregarSolicitudPrestamoComponent },
     {path:"verRegistroEjemplo", component:AgregarEjemploComponent },
-  
+
      //PC2 - CRUD de Entidades
     {path:"verCrudCoordenada", component:CrudCoordenadaComponent },
     {path:"verCrudCuenta", component:CrudCuentaComponent },
     {path:"verCrudDataCatalogo", component:CrudDataCatalogoComponent },
-  { path: "verCrudEntidadFinanciera", component: CrudEntidadFinancieraComponent },
+    { path: "verCrudEntidadFinanciera", component: CrudEntidadFinancieraComponent },
     {path:"verCrudGrupo", component:CrudGrupoComponent},
     {path:"verCrudMontoPrestamo", component:CrudMontoPrestamoComponent },
     {path:"verCrudPrestatario", component:CrudPrestatarioComponent },
     {path:"verCrudSolicitudPrestamo", component:CrudSolicitudPrestamoComponent },
     {path: "verCrudEjemplo", component: CrudEjemploComponent },
-    
+
     //PC3 - Consulta de Entidades
     {path:"verConsultaCoordenada", component:ConsultaCoordenadaComponent },
     {path:"verConsultaCuenta", component:ConsultaCuentaComponent },
@@ -74,4 +73,4 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '', pathMatch: 'full' }
   ];
-  
+
