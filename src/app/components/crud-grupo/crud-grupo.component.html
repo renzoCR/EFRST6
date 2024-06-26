@@ -1,1 +1,62 @@
-<p>crud-grupo works!</p>
+<app-menu></app-menu>
+<div class="container">
+<div class="row">
+        <mat-toolbar color="primary">
+        <span>Grecia Melissa Arriola Borda - Grupo</span>
+        </mat-toolbar>
+</div>
+<div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+        <mat-label>Buscar por descripcion</mat-label>
+        <input matInput [(ngModel)] = "filtro" >
+        </mat-form-field>
+        <div class="button-container">
+        <button (click)="refrescarTabla()" mat-raised-button type="button" color="primary" style="width: 150px;">Filtrar</button>
+        <button (click)="AbrirDialogRegistrar()" mat-raised-button type="button" color="primary" style="width: 150px;">Registrar</button>
+        </div>
+</div>
+<div class="row" style="margin-top: 3%">
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+        <ng-container matColumnDef="IDGrupo">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.idGrupo}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Descripcion">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.descripcion}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Ubigeo">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Ubigeo</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.ubigeo.departamento}} - {{ aux.ubigeo.provincia}} - {{ aux.ubigeo.distrito}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Lider">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Usuario Lider</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.usuarioLider.nombreCompleto}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Estado">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Acciones">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let aux; let i=index;">
+<div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="idEstado_{{aux.idGrupo}}" name="estado"
+        [checked]="aux.estado==1?true:false"
+        (change)="upEstado(aux)" />
+        <label class="custom-control-label" for="idEstado_{{aux.idGrupo}}"></label>
+</div>
+        <button mat-icon-button style="color: #a15765;" (click)="Actualizar(aux)">
+        <mat-icon aria-label="Edit">editar</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="eliminar(aux)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[8,9,10]" showFirstLastButtons></mat-paginator>
+</div>
+</div>

@@ -1,0 +1,22 @@
+.mat-column-idGrupo {
+    flex: 0 0 8%;
+}
+.mat-column-descripcion {
+    flex: 0 0 30%;
+}
+.mat-column-ubigeo {
+    flex: 0 0 30%;
+}
+.mat-column-estado {
+    flex: 0 0 8%;
+}
+.mat-column-lider {
+    flex: 0 0 20%;
+}
+.mat-column-acciones {
+    flex: 0 0 15%;
+}
+.button-container {
+    display: flex;
+    gap: 10px; 
+}
