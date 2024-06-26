@@ -4,6 +4,7 @@ import { EntidadFinanciera } from '../models/entidad-financiera.model';
 import { Observable } from 'rxjs';
 import { AppSettings } from '../app.settings';
 const baseUrl = AppSettings.API_ENDPOINT+ '/entidad';
+const baseUrlCrud = AppSettings.API_ENDPOINT+ '/crudEntidad';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,4 +28,19 @@ export class EntidadFinancieraService {
     console.log('>>> Service >> validarGerenteRegistro [inicio]' + gerente);
     return this.http.get<any>(baseUrl+'/validarGerenteRegistro?descripcion='+gerente);
   }
+
+  //PC2: CRUD de Ejemplo
+  registrarCrud(data:EntidadFinanciera):Observable<any>{
+    return this.http.post(baseUrlCrud+"/registraEntidad", data);
+  }
+  actualizarCrud(data:EntidadFinanciera):Observable<any>{
+    return this.http.put(baseUrlCrud+"/actualizaEntidad", data);
+  }
+  eliminarCrud(id:number):Observable<any>{
+    return this.http.delete(baseUrlCrud+"/eliminaEntidad/"+id);
+  }
+  consultarCrud(filtro:string):Observable<any>{
+    return this.http.get(baseUrlCrud+"/listaEntidadFinancieraPorNombreLike/"+ filtro);
+  }
+
 }
