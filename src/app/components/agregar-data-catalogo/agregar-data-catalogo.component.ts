@@ -9,9 +9,10 @@ import { DataCatalogoService } from '../../services/data-catalogo.service';
 import { UtilService } from '../../services/util.service';
 import { TokenService } from '../../security/token.service';
 import { Usuario } from '../../models/usuario.model';
-import { Catalogo } from '../../models/catalogo.model';
 import { map } from 'rxjs';
 import { booleanValidator } from '../../services/Validator.service';
+import { EntidadFinanciera } from '../../models/entidad-financiera.model';
+import { Catalogo } from '../../models/catalogo.model';
 
 
 @Component({
@@ -25,15 +26,12 @@ export class AgregarDataCatalogoComponent {
   dataCatalogo: DataCatalogo={
     descripcion: "",
     estado: -1,
-    idCatalogo:{
-      idCatalogo: -1
-    },
-    usuarioPrestatario: {
-      idUsuario: -1
-    },
     usuarioRegistro: {
       idUsuario: -1
     },
+    usuarioPrestatario: {
+      idUsuario: -1
+    }
   }
 
   formRegistrar = this.formBuilder.group({
@@ -48,7 +46,7 @@ export class AgregarDataCatalogoComponent {
     private formBuilder: FormBuilder) {
 console.log(">>> constructor  >>> ");
 }
-/*ngOnInit() {
+ngOnInit() {
   console.log(">>> OnInit [inicio]");
   this.utilService.listaCatalogo().subscribe(
       x=> this.lstCatalogo = x
@@ -56,7 +54,7 @@ console.log(">>> constructor  >>> ");
   this.objUsuario.idUsuario = this.tokenService.getUserId();
   console.log(">>> OnInit >>> " + this.lstCatalogo);
   console.log(">>> OnInit [fin]");
-  }*/
+  }
   registra() {
     console.log(">>> registra [inicio]");
     this.dataCatalogo.usuarioRegistro = this.objUsuario;
@@ -90,5 +88,4 @@ console.log(">>> constructor  >>> ");
           })
       );
   }
-
 }
