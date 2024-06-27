@@ -1,1 +1,62 @@
-<p>consulta-data-catalogo works!</p>
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span>Consulta Data Catalogo</span>
+        </mat-toolbar>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-5">
+            <mat-label>Descripción</mat-label>
+            <input matInput [(ngModel)]="descripcion" >
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Tipo</mat-label>
+            <mat-select [(ngModel)]="idCatalogo">
+                <mat-option value="-1"> [Todos] </mat-option>
+                <mat-option *ngFor="let c of lstCatalogo" [value]="c.idCatalogo">
+                    {{c.descripcion}}  
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="col-md-2" style="display: flex; align-items: center; justify-content: center">
+            <div class="custom-control custom-switch">
+                <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado"  [checked]="true"/>
+                <label class="custom-control-label" for="idEstado">Estado</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center">
+        <button (click)="consultar()" mat-raised-button type="button" color="primary" style="width: 100px;" >Filtrar</button>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+    
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idDataCatalogo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let c">{{ c.idDataCatalogo }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="descripcion">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+                <mat-cell *matCellDef="let c">{{ c.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipoCatalogo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo Catalogo</mat-header-cell>
+                <mat-cell *matCellDef="let c">{{ c.Catalogo.descripcion}}</mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="estado">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let c">{{ c.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+            </ng-container>
+            
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+    
+    </div>
+</div>
