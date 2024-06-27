@@ -1,79 +1,49 @@
 <app-menu></app-menu>
-<div class="container" style="max-width: 50%;">
-    <form [formGroup]="formRegistrar" style="margin: 0 auto;">
+<div class="container">
+
+<form [formGroup]="formRegistrar">
       <div class="row">
         <mat-toolbar color="primary">
           <span>Registro Datos Catalogo</span>
         </mat-toolbar>
       </div>
       <div class="row" style="margin-top: 3%">
-        <mat-form-field appearance="fill" class="full-width">
+        <mat-form-field class="col-md-4">
           <mat-label>Nombre</mat-label>
-          <input
-            matInput
-            [(ngModel)]="dataCatalogo.descripcion"
-            formControlName="validaDescripcion"
-          />
-          <mat-hint
-            style="color: red"
-            *ngIf="formRegistrar.controls.validaDescripcion.touched"
-          >
-            <span
-              *ngIf="formRegistrar.controls.validaDescripcion.hasError('required')"
-            >
+          <input matInput [(ngModel)] ="dataCatalogo.descripcion" formControlName="validaDescripcion">
+          <mat-hint style="color: red;" *ngIf="formRegistrar.controls.validaDescripcion.touched">
+            <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('required')">
               El Nombre es requerido
             </span>
-            <span
-              *ngIf="formRegistrar.controls.validaDescripcion.hasError('pattern')"
-            >
+            <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('pattern')">
               El Nombre es de 3 a 45 caracteres
             </span>
-            <span
-              *ngIf="
-                formRegistrar.controls.validaDescripcion.hasError(
-                  'existeDescripcion'
-                )
-              "
-            >
+            <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('existeDescripcion')">
               El Nombre ya existe
             </span>
           </mat-hint>
         </mat-form-field>
       </div>
       <div class="row" style="margin-top: 3%">
-        <mat-form-field appearance="fill" class="full-width">
+        <mat-form-field class="col-md-4">
           <mat-label>Tipo</mat-label>
           <mat-select
-          [(ngModel)]="dataCatalogo.idCatalogo!.descripcion"
-             formControlName="">
+          [(ngModel)]="dataCatalogo.idCatalogo!.descripcion" formControlName="">
             <mat-option value="-1">[Seleccione]</mat-option>
             <mat-option *ngFor="let x of lstCatalogo" [value]="x.idCatalogo">
               {{x.descripcion}}
             </mat-option>
           </mat-select>
-          <mat-hint
-            style="color: red"
-            *ngIf="formRegistrar.controls.validaDescripcion.touched"
-          >
-            <span
-              *ngIf="formRegistrar.controls.validaDescripcion.hasError('min')"
-            >
+          <mat-hint style="color: red" *ngIf="formRegistrar.controls.validaDescripcion.touched">
+            <span *ngIf="formRegistrar.controls.validaDescripcion.hasError('min')">
               El Tipo es requerido
             </span>
           </mat-hint>
         </mat-form-field>
       </div>
 
-      <div style="text-align: center; margin-top: 20px;">
-        <button
-          mat-raised-button
-          type="submit"
-          color="primary"
-          [disabled]="formRegistrar.invalid"
-          (click)="registra()"
-        >
-          Registrar
-        </button>
+      <div class="row" style="text-align: center; margin-top: 20px;">
+        <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid" (click)="registra()">Registrar</button>
       </div>
     </form>
   </div>

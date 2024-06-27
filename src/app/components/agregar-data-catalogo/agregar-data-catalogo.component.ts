@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { AppMaterialModule } from '../../app.material.module';
 import { FormsModule, FormBuilder, Validators, ReactiveFormsModule, Form, FormControl } from '@angular/forms';
@@ -11,7 +11,6 @@ import { TokenService } from '../../security/token.service';
 import { Usuario } from '../../models/usuario.model';
 import { map } from 'rxjs';
 import { booleanValidator } from '../../services/Validator.service';
-import { EntidadFinanciera } from '../../models/entidad-financiera.model';
 import { Catalogo } from '../../models/catalogo.model';
 
 
@@ -31,7 +30,7 @@ export class AgregarDataCatalogoComponent {
     },
     usuarioPrestatario: {
       idUsuario: -1
-    }
+    },
   }
 
   formRegistrar = this.formBuilder.group({
