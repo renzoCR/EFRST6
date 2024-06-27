@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './crud-prestatario-agregar.component.html',
-  styleUrl: './crud-prestatario-agregar.component.css'
+  styleUrl: './crud-prestatario-agregar.component.css',
 })
-export class CrudPrestatarioAgregarComponent {
-
-}
+export class CrudPrestatarioAgregarComponent {}
