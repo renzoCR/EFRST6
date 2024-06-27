@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppSettings } from '../app.settings';
@@ -6,6 +6,7 @@ import { DataCatalogo } from '../models/dataCatalogo.model';
 
 const baseUrl = AppSettings.API_ENDPOINT+'/dataCatalogo';
 const baseUrlCrudDataCatalogo = AppSettings.API_ENDPOINT + '/crudDataCatalogo';
+const baseUrlConsultaDataCatalogo = AppSettings.API_ENDPOINT + '/consultaDataCatalogo';
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,12 @@ export class DataCatalogoService {
     return this.http.get(baseUrlCrudDataCatalogo+"/listaDataCatalogoPorNombreLike/"+ filtro);
   }
 
+  // consultar
+  consultaDataCatalogo(descripcion:string, estado:number, idCatalogo:number): Observable<any>{
+    const params = new HttpParams()
+        .set("descripcion", descripcion)
+        .set("estado",estado)
+        .set("idCatalogo",idCatalogo)
+    return this.http.get(baseUrlConsultaDataCatalogo+"/consultaDataCatalogo",{params});
+  }
 }
