@@ -1,27 +1,34 @@
-import { Component, Inject, inject } from '@angular/core';
-import {
-  Validators,
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSelectChange } from '@angular/material/select';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DataCatalogo } from '../../models/dataCatalogo.model';
-import { MontoPrestamo } from '../../models/monto-prestamo.model';
-import { SolicitudPrestamo } from '../../models/solicitud-prestamo.model';
+import Swal from 'sweetalert2'
+
+import { Pais } from '../../models/pais.model';
 import { Usuario } from '../../models/usuario.model';
-import { TokenService } from '../../security/token.service';
-import { MontoPrestamoService } from '../../services/monto-prestamo.service';
-import { SolicitudPrestamoService } from '../../services/solicitud-prestamo.service';
 import { UtilService } from '../../services/util.service';
+import { TokenService } from '../../security/token.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule, FormBuilder, Validators, ReactiveFormsModule, Form, FormControl } from '@angular/forms';
 import { AppMaterialModule } from '../../app.material.module';
 import { MenuComponent } from '../../menu/menu.component';
+import { map } from 'rxjs';
+import { Ubigeo } from '../../models/ubigeo.model';
+import { DataCatalogo } from '../../models/dataCatalogo.model';
+import { PrestatarioService } from '../../services/prestatario.service';
+import { ChangeDetectionStrategy, Component, Inject, inject } from '@angular/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { SolicitudPrestamoService } from '../../services/solicitud-prestamo.service';
+import { MontoPrestamoService } from '../../services/monto-prestamo.service';
+import { SolicitudPrestamo } from '../../models/solicitud-prestamo.model';
+import { MatSelectChange } from '@angular/material/select';
+import { MontoPrestamo } from '../../models/monto-prestamo.model';
 
 @Component({
   selector: 'app-crud-solicitud-prestamo-actualizar',
+  providers: [provideNativeDateAdapter()],
   standalone: true,
   imports: [
     AppMaterialModule,
@@ -159,3 +166,7 @@ export class CrudSolicitudPrestamoActualizarComponent {
       });
   }
 }
+
+
+
+
