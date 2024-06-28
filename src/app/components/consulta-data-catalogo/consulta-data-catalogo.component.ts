@@ -33,7 +33,7 @@ constructor(private dataCatalogoService: DataCatalogoService,
 }
 ngOnInit() {
   console.log(">>> OnInit [inicio]");
-  this.utilService.listaCatalogo().subscribe(
+  this.utilService.listaDescripcion().subscribe(
       x=> this.lstCatalogo = x
   );
   console.log(">>> ngOnInit [fin]");

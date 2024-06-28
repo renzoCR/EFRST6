@@ -6,7 +6,7 @@ export class DataCatalogo {
     idDataCatalogo?: number;
     descripcion?: string;
     estado?: number;
-    idCatalogo?:Catalogo;
+    catalogo?:Catalogo;
     usuarioPrestatario?:Usuario;
     usuarioRegistro?:Usuario;
 }
