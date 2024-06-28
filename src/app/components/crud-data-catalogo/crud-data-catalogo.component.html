@@ -19,11 +19,15 @@
         <mat-table #table class="mat-cell" [dataSource]="dataSource">
             <ng-container matColumnDef="idDataCatalogo">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
-                <mat-cell *matCellDef="let aux">{{ aux.idCataCatalogo }}</mat-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idDataCatalogo }}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="descripcion">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
                 <mat-cell *matCellDef="let aux">{{ aux.descripcion}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="idCatalogo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>TipoCatalogo</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.catalogo.descripcion}}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="estado">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
