@@ -1,0 +1,15 @@
+.mat-column-idDataCatalogo {
+    flex: 0 0 10%;
+}
+
+.mat-column-descripcion {
+    flex: 0 0 20%;
+}
+
+.mat-column-idCatalogo {
+    flex: 0 0 10%;
+}
+
+.mat-column-estado {
+    flex: 0 0 10%;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit , ViewChild} from '@angular/core';
 import Swal from 'sweetalert2';
 import { AppMaterialModule } from '../../app.material.module';
 import { FormsModule, FormBuilder, Validators, ReactiveFormsModule, Form, FormControl } from '@angular/forms';
@@ -22,6 +22,8 @@ import { Catalogo } from '../../models/catalogo.model';
   styleUrl: './agregar-data-catalogo.component.css'
 })
 export class AgregarDataCatalogoComponent {
+  @ViewChild('estado') estado!: ElementRef;
+  
   dataCatalogo: DataCatalogo={
     descripcion: "",
     estado: -1,
@@ -42,6 +44,7 @@ export class AgregarDataCatalogoComponent {
   });
   lstCatalogo: Catalogo[] = [];
   objUsuario: Usuario = {};
+  
   constructor(private DataCatalogoService: DataCatalogoService,
     private utilService: UtilService,
     private tokenService: TokenService,
@@ -64,7 +67,12 @@ ngOnInit() {
     console.log(">>> registra [inicio] " + this.dataCatalogo);
     console.log(this.dataCatalogo);
     console.log(this.dataCatalogo.catalogo);
-
+    console.log (this.estado.nativeElement.checked);
+    if(this.estado.nativeElement.checked == true){
+      this.dataCatalogo.estado = 1
+    }else{
+      this.dataCatalogo.estado = 0
+    }
 
     this.DataCatalogoService.registro(this.dataCatalogo).subscribe(
       x=>{

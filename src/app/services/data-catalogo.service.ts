@@ -6,7 +6,7 @@ import { DataCatalogo } from '../models/dataCatalogo.model';
 
 const baseUrl = AppSettings.API_ENDPOINT+'/dataCatalogo';
 const baseUrlCrudDataCatalogo = AppSettings.API_ENDPOINT + '/crudDataCatalogo';
-const baseUrlConsultaDataCatalogo = AppSettings.API_ENDPOINT + '/consultaDataCatalogo';
+const baseUrlConsultaDataCatalogo = AppSettings.API_ENDPOINT + '/dataCatalogoConsulta';
 
 @Injectable({
   providedIn: 'root'
@@ -44,11 +44,28 @@ export class DataCatalogoService {
   }
 
   // consultar
-  consultaDataCatalogo(descripcion:string, estado:number, idCatalogo:number): Observable<any>{
+  /*consultaDataCatalogo(descripcion:string, estado:number, idCatalogo:number): Observable<any>{
     const params = new HttpParams()
         .set("descripcion", descripcion)
         .set("estado",estado)
-        .set("idCatalogo",idCatalogo)
-    return this.http.get(baseUrlConsultaDataCatalogo+"/consultaDataCatalogo",{params});
-  }
+        .set("idCatalogo",idCatalogo);
+    return this.http.get(baseUrlConsultaDataCatalogo+"/consultaComplejoDataCatalogo",{params});
+  }*/
+   /*consultaDataCatalogo(descripcion: string, idCatalogo: number, estado: number): Observable<any> {
+      const params = new HttpParams()
+          .set('descripcion', descripcion)
+          .set('idCatalogo', idCatalogo.toString())
+          .set('estado', estado.toString());
+  
+          return this.http.get<DataCatalogo[]>('/api/url/consultaComplejoDataCatalogo/consultaComplejoDataCatalogo', { params });
+        
+  }*/
+   consultaDataCatalogo(descripcion: string, idCatalogo: number, estado: number): Observable<DataCatalogo[]> {
+            const params = new HttpParams()
+              .set('descripcion', descripcion)
+              .set('idCatalogo', idCatalogo.toString())
+              .set('estado', estado.toString());
+        
+            return this.http.get<DataCatalogo[]>(`${baseUrlConsultaDataCatalogo}/consultaComplejoDataCatalogo`, { params });
+          }
 }
