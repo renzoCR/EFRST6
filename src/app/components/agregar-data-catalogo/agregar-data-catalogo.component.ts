@@ -25,6 +25,9 @@ export class AgregarDataCatalogoComponent {
   dataCatalogo: DataCatalogo={
     descripcion: "",
     estado: -1,
+    catalogo:{
+      idCatalogo:-1
+    },
     usuarioRegistro: {
       idUsuario: -1
     },
@@ -35,7 +38,7 @@ export class AgregarDataCatalogoComponent {
 
   formRegistrar = this.formBuilder.group({
     validaDescripcion: ['', [Validators.required, Validators.pattern('[a-zA-Z ]{3,45}')], this.validaDescripcion.bind(this)],
-    validaEstado: ['', [booleanValidator()]],
+    validaTipoCatalogo: ['', [Validators.min(1)]],
   });
   lstCatalogo: Catalogo[] = [];
   objUsuario: Usuario = {};
@@ -47,8 +50,9 @@ console.log(">>> constructor  >>> ");
 }
 ngOnInit() {
   console.log(">>> OnInit [inicio]");
-  this.utilService.listaCatalogo().subscribe(
+  this.utilService.listaDescripcion().subscribe(
       x=> this.lstCatalogo = x
+      
   );
   this.objUsuario.idUsuario = this.tokenService.getUserId();
   console.log(">>> OnInit >>> " + this.lstCatalogo);
@@ -59,6 +63,7 @@ ngOnInit() {
     this.dataCatalogo.usuarioRegistro = this.objUsuario;
     console.log(">>> registra [inicio] " + this.dataCatalogo);
     console.log(this.dataCatalogo);
+    console.log(this.dataCatalogo.catalogo);
 
 
     this.DataCatalogoService.registro(this.dataCatalogo).subscribe(
@@ -67,6 +72,9 @@ ngOnInit() {
             this.dataCatalogo ={
                     descripcion: "",
                     estado:-1,
+                    catalogo:{
+                      idCatalogo: -1
+                    },
                     usuarioPrestatario: {
                         idUsuario: -1
                     },

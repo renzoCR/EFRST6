@@ -25,7 +25,7 @@ import { Data } from '@angular/router';
 export class CrudDataCatalogoComponent {
   dataSource: any;
   @ViewChild (MatPaginator, { static: true }) paginator!: MatPaginator;
-  displayedColumns = ["idDataCatalogo","descripcion","estado"];
+  displayedColumns = ["idDataCatalogo","descripcion","estado","acciones"];
   filtro: string = "";
   objUsuario: Usuario = {} ;
     

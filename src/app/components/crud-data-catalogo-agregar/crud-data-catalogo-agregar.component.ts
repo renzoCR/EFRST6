@@ -46,7 +46,7 @@ export class CrudDataCatalogoAgregarComponent {
     }
     ngOnInit() {
       console.log(">>> OnInit [inicio]");
-      this.utilService.listaCatalogo().subscribe(
+      this.utilService.listaDescripcion().subscribe(
           x=> this.lstCatalogo = x
       );
       this.objUsuario.idUsuario = this.tokenService.getUserId();

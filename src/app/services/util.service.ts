@@ -64,8 +64,8 @@ export class UtilService {
   listaEntidadesFinancierasPorTipo(tipoEntidadId: number): Observable<EntidadFinanciera[]> {
     return this.http.get<EntidadFinanciera[]>(`${baseUrlUtil}/listaEntidadesFinancierasPorTipo/${tipoEntidadId}`);
   }
-  listaCatalogo(): Observable<Catalogo[]> {
-    return this.http.get<Catalogo[]>(baseUrlUtil+"/listaCatalogo");
+  listaDescripcion(): Observable<Catalogo[]> {
+    return this.http.get<Catalogo[]>(baseUrlUtil+"/listaDescripcion");
   }
 
 }
