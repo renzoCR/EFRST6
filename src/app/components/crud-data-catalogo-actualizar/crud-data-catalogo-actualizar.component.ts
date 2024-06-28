@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ElementRef} from '@angular/core';
 import Swal from 'sweetalert2';
 
 import { DataCatalogo } from '../../models/dataCatalogo.model';
@@ -23,6 +23,8 @@ import { booleanValidator } from '../../services/Validator.service';
   styleUrl: './crud-data-catalogo-actualizar.component.css'
 })
 export class CrudDataCatalogoActualizarComponent {
+  @ViewChild('estado') estado!: ElementRef;
+
  dataCatalogo: DataCatalogo={
   descripcion: "",
   estado: -1,
@@ -64,7 +66,12 @@ actualizar() {
   console.log(">>> actualiza [inicio]");
   this.dataCatalogo.usuarioRegistro = this.objUsuario;
   console.log(">>> actualiza [inicio] " + this.dataCatalogo);
-
+  console.log (this.estado.nativeElement.checked);
+    if(this.estado.nativeElement.checked == true){
+      this.dataCatalogo.estado = 1
+    }else{
+      this.dataCatalogo.estado = 0
+    }
 
   this.dataCatalogoService.actualizarCrud(this.dataCatalogo).subscribe(
     x=>{
