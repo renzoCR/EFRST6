@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Catalogo } from '../../models/catalogo.model';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-data-catalogo',
@@ -20,36 +21,57 @@ import { Catalogo } from '../../models/catalogo.model';
   styleUrl: './consulta-data-catalogo.component.css'
 })
 export class ConsultaDataCatalogoComponent {
-  descripcion: string = '';
-  estado: boolean = true;
-  idCatalogo: number = -1;
   lstCatalogo: Catalogo[] = [];
+
+  descripcion: string = "";
+  idCatalogo: number = -1;
+  estado: boolean = true;
+
   dataSource: any;
-  displayedColumns = ["idDataCatalogo","descripcion","estado","tipoCatalogo"];
-  @ViewChild (MatPaginator, {static:true}) paginator!: MatPaginator;
-constructor(private dataCatalogoService: DataCatalogoService,
-  private utilService: UtilService){
+  @ViewChild(MatPaginator,{static: true}) paginator!: MatPaginator;
+  displayedColumns = ["idDataCatalogo","descripcion","idCatalogo","estado"];
 
-}
-ngOnInit() {
-  console.log(">>> OnInit [inicio]");
-  this.utilService.listaDescripcion().subscribe(
-      x=> this.lstCatalogo = x
-  );
-  console.log(">>> ngOnInit [fin]");
-  }
-  consultar(){
-    console.log(">>> consultar [inicio]");
-    console.log("descripcion: ", this.descripcion);
-    console.log("estado: ", this.estado);
-    console.log("idCatalogo: ", this.idCatalogo);
+  @ViewChild (MatPaginator,{static: true}) pagina!: MatPaginator;
+  constructor(private dataCatalogoService: DataCatalogoService,
+    private utilService: UtilService,){
 
-    this.dataCatalogoService.consultaDataCatalogo(this.descripcion, this.estado?1:0, this.idCatalogo).subscribe(
-      data => {
-        this.dataSource = data;
-        this.dataSource.paginator = this.paginator;
-      }
-    );
-    console.log (">>> consultar [fin]");
-  }
+    }
+    ngOnInit() {
+      console.log(">>> ngOnInit [ini]");
+      this.utilService.listaDescripcion().subscribe(
+        x => { this.lstCatalogo = x; }
+      );
+      console.log(">>> ngOnInit [fin]");
+    }
+    /*consultar() {
+      console.log(">>> consultar [ini]");
+      console.log("descripcion: ", this.descripcion);
+      console.log("idCatalogo: ", this.idCatalogo);
+      console.log("estado: ", this.estado);
+      this.dataCatalogoService.consultaDataCatalogo(this.descripcion, this.estado?1:0, this.idCatalogo).subscribe(
+        data => {
+          this.dataSource = data;
+          this.dataSource.paginator = this.paginator;
+        }
+      );
+      console.log(">>> consultar [fin]");
+    }*/
+      consult() {
+        console.log("consultar [inicio]");
+        console.log("descripcion:", this.descripcion);
+        console.log("idCatalogo:", this.idCatalogo);
+        console.log("estado:", this.estado);
+        
+        this.dataCatalogoService.consultaDataCatalogo(this.descripcion, this.idCatalogo, this.estado ? 1 : 0).subscribe(
+            data => {
+                this.dataSource = new MatTableDataSource<DataCatalogo>(data);
+                this.dataSource.paginator = this.paginator; // Configura el paginador aquí
+            },
+            error => {
+                console.error("ERROR! Cuando se consulta los datos:", error);
+            }
+        );
+    
+        console.log("consulta [final]");
+    }
 }

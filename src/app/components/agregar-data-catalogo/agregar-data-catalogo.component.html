@@ -38,8 +38,12 @@
                         </mat-hint>
                             </mat-form-field>
                 </div>
-                
-                
+                <div class="col-md-2" style="display: flex; align-items: center; justify-content: center">
+                    <div class="custom-control custom-switch">
+                        <input  type="checkbox" class="custom-control-input" id="idEstado" #estado />
+                        <label class="custom-control-label" for="idEstado">Estado</label>
+                    </div>
+                </div>
                 <div  class="row"  style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;" >
                     <button mat-raised-button type="submit" color="primary" [disabled]="formRegistrar.invalid" (click)="registra()">Registra</button>
                 </div>

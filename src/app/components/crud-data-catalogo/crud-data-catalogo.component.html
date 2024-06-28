@@ -38,10 +38,10 @@
                 <mat-cell *matCellDef="let aux; let i=index;">
 
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="idEstado_{{ aux.idEjemplo}}" name="estado"
+                        <input type="checkbox" class="custom-control-input" id="idEstado_{{ aux.idDataCatalogo}}" name="estado"
                             [checked]="aux.estado==1?true:false"
                             (change)="updateEstado(aux)" />
-                        <label class="custom-control-label" for="idEstado_{{ aux.idEjemplo}}"></label>
+                        <label class="custom-control-label" for="idEstado_{{ aux.idDataCatalogo}}"></label>
                     </div>
                     
                     <button mat-icon-button color="accent" (click)="openDialogActualizar(aux)" >

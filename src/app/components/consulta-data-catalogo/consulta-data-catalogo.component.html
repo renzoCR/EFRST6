@@ -15,8 +15,8 @@
             <mat-label>Tipo</mat-label>
             <mat-select [(ngModel)]="idCatalogo">
                 <mat-option value="-1"> [Todos] </mat-option>
-                <mat-option *ngFor="let c of lstCatalogo" [value]="c.idCatalogo">
-                    {{c.descripcion}}  
+                <mat-option *ngFor="let x of lstCatalogo " [value]="x.idCatalogo">
+                    {{x.descripcion}}  
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center">
-        <button (click)="consultar()" mat-raised-button type="button" color="primary" style="width: 100px;" >Filtrar</button>
+        <button (click)="consult()" mat-raised-button type="button" color="primary" style="width: 100px;" >Filtrar</button>
     </div>
 
     <div class="row" style="margin-top: 3%">
@@ -43,9 +43,9 @@
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
                 <mat-cell *matCellDef="let c">{{ c.descripcion}}</mat-cell>
             </ng-container>
-            <ng-container matColumnDef="tipoCatalogo">
+            <ng-container matColumnDef="idCatalogo">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Tipo Catalogo</mat-header-cell>
-                <mat-cell *matCellDef="let c">{{ c.Catalogo.descripcion}}</mat-cell>
+                <mat-cell *matCellDef="let c">{{ c.catalogo.descripcion}}</mat-cell>
             </ng-container>
             
             <ng-container matColumnDef="estado">
