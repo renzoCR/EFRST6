@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import Swal from 'sweetalert2';
 
 import { DataCatalogo } from '../../models/dataCatalogo.model';
@@ -22,6 +22,8 @@ import { booleanValidator } from '../../services/Validator.service';
   styleUrl: './crud-data-catalogo-agregar.component.css'
 })
 export class CrudDataCatalogoAgregarComponent {
+  @ViewChild('estado') estado!: ElementRef;
+
   dataCatalogo : DataCatalogo ={
     descripcion: "",
     estado: -1,
@@ -60,7 +62,12 @@ export class CrudDataCatalogoAgregarComponent {
       console.log(">>> registra [inicio]");
       this.dataCatalogo.usuarioRegistro = this.objUsuario;
       console.log(">>> registra [inicio] " + this.dataCatalogo);
-  
+      console.log (this.estado.nativeElement.checked);
+      if(this.estado.nativeElement.checked == true){
+        this.dataCatalogo.estado = 1
+      }else{
+      this.dataCatalogo.estado = 0
+      }
   
       this.DataCatalogoService.registrarCrud(this.dataCatalogo).subscribe(
         x=>{
