@@ -6,6 +6,7 @@ import { AppSettings } from '../app.settings';
 
 const baseUrlPrueba = AppSettings.API_ENDPOINT+ '/cuenta';
 const baseUrlCrudPrueba = AppSettings.API_ENDPOINT + '/crudCuenta';
+const baseUrlConsultaPrueba = AppSettings.API_ENDPOINT + '/consultaCuenta';
 
 
 @Injectable({
@@ -41,6 +42,12 @@ export class CuentaService {
   }
   consultarCrud(filtro:string):Observable<any>{
     return this.http.get(baseUrlCrudPrueba+"/listaCuentaPorNumeroLike/"+ filtro);
+  }
+
+  //Consulta EF
+  consultaCuenta(numero: string, idDataCalogo: string, estado: number, idTipoMoneda: string): Observable<any>{
+    console.log('>>> Service >> consultaCuenta [inicio]' + numero);
+    return this.http.get<any>(baseUrlConsultaPrueba+'/consultaComplejoCuenta?numero='+numero + "&idDataCalogo="+idDataCalogo + "&estado="+estado+ "&idTipoMoneda="+idTipoMoneda );
   }
 
 }
