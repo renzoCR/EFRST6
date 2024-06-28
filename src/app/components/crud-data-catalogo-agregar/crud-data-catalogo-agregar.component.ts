@@ -25,6 +25,9 @@ export class CrudDataCatalogoAgregarComponent {
   dataCatalogo : DataCatalogo ={
     descripcion: "",
     estado: -1,
+    catalogo:{
+      idCatalogo:-1
+    },
     usuarioPrestatario:{
       idUsuario: -1
     },
@@ -34,7 +37,7 @@ export class CrudDataCatalogoAgregarComponent {
   }
   formRegistrar = this.formBuilder.group({
     validaDescripcion: ['', [Validators.required, Validators.pattern('[a-zA-Z ]{3,30}')], this.validaDescripcion.bind(this)],
-    validaEstado: ['', [booleanValidator()]],
+    validaTipoCatalogo: ['', [Validators.min(1)]],
   });
   lstCatalogo: Catalogo[] = [];
   objUsuario: Usuario = {};
@@ -65,6 +68,9 @@ export class CrudDataCatalogoAgregarComponent {
               this.dataCatalogo ={
                       descripcion: "",
                       estado:-1,
+                      catalogo:{
+                        idCatalogo:-1
+                      },
                       usuarioPrestatario: {
                           idUsuario: -1
                       },
