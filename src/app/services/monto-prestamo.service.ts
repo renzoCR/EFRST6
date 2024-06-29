@@ -29,3 +29,4 @@ export class MontoPrestamoService {
     return this.http.get(baseUrl+"/consulta?dias="+dia+"&capital="+capital+"&monto="+monto+"&estado="+estado);
   }
 }
+

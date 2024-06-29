@@ -57,3 +57,4 @@ export class ConsultaMontoPrestamoComponent {
     this.monto = ""
   }
 }
+
