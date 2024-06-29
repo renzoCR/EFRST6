@@ -1,1 +1,62 @@
-<p>crud-monto-prestamo works!</p>
+<app-menu></app-menu>
+<div class="container">
+<div class="row">
+        <mat-toolbar color="primary">
+        <span>Monto Prestamo</span>
+        </mat-toolbar>
+</div>
+<div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+        <mat-label>Buscar por dia</mat-label>
+        <input type="number" matInput [(ngModel)] = "filtro" >
+        </mat-form-field>
+        <div class="button-container">
+        <button (click)="filtrar()" mat-raised-button type="button" color="primary" style="width: 150px;">Filtrar</button>
+        <button (click)="AbrirDialogRegistrar()" mat-raised-button type="button" color="primary" style="width: 150px;">Registrar</button>
+        </div>
+</div>
+<div class="row" style="margin-top: 3%">
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+        <ng-container matColumnDef="IDMontoPrestamo">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.idMontoPrestamo}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Capital">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Capital</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.capital}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Dias">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Dias</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.dias.descripcion}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Monto">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Monto</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.monto}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Estado">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Acciones">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let aux; let i=index;">
+<div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="idEstado_{{aux.idMontoPrestamo}}" name="estado"
+        [checked]="aux.estado==1?true:false"
+        (change)="upEstado(aux)" />
+        <label class="custom-control-label" for="idEstado_{{aux.idMontoPrestamo}}"></label>
+</div>
+        <button mat-icon-button style="color: #a15765;" (click)="Actualizar(aux)">
+        <mat-icon aria-label="Edit">editar</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="eliminar(aux)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[8,9,10]" showFirstLastButtons></mat-paginator>
+</div>
+</div>
