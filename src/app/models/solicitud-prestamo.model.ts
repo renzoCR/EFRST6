@@ -9,9 +9,10 @@ export class SolicitudPrestamo {
   fechaInicioPrestamo?: string;
   fechaFinPrestamo?: string;
   estadoSolicitud?: DataCatalogo;
-  estado?: Usuario;
+  estado?: number;
   fechaRegistro?: string;
   fechaActualizacion?: string;
   usuarioRegistro?: Usuario;
   usuarioActualiza?: Usuario;
+  usuarioPrestatario?: Usuario;
 }

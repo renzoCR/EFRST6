@@ -1,0 +1,17 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* Espacio entre los elementos */
+    margin-top: 3%;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-control.custom-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

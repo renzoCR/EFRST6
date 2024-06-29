@@ -1,1 +1,66 @@
-<p>consulta-monto-prestamo works!</p>
+<app-menu></app-menu>
+<div class="container">
+   <div class="row">
+      <mat-toolbar color="primary">
+         <span>Consulta Monto Prestamo</span>
+      </mat-toolbar>
+   </div>
+   <div class="grid-container">
+      <mat-form-field style="margin-top: 13px;" class="form-item">
+         <mat-label>Capital</mat-label>
+         <input type="number" matInput [(ngModel)]="capital">
+      </mat-form-field>
+      <div style="margin-top: 2%;margin-left: 4%;">
+        <mat-form-field appearance="fill">
+          <mat-label>Dias</mat-label>
+          <mat-select
+          [(ngModel)]="dia">
+            <mat-option value="-1">[Seleccione]</mat-option>
+            <mat-option *ngFor="let x of dias" [value]="x.descripcion">
+              {{ x.descripcion }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-form-field style="margin-top: 13px;" class="form-item">
+        <mat-label>Monto</mat-label>
+        <input type="number" matInput [(ngModel)]="monto">
+     </mat-form-field>
+      <div class="form-item custom-control custom-switch">
+         <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado" />
+         <label class="custom-control-label" for="idEstado">Estado</label>
+      </div>
+   </div>
+   <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center">
+      <button mat-raised-button type="button" color="primary" style="width: 100px;"
+         (click)="consulta()">Filtrar</button>
+   </div>
+   <div class="row" style="margin-top: 3%">
+    <mat-table #table class="mat-cell" [dataSource]="dataSource">
+    <ng-container matColumnDef="IDMontoPrestamo">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+    <mat-cell *matCellDef="let aux">{{ aux.idMontoPrestamo}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Capital">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Capital</mat-header-cell>
+    <mat-cell *matCellDef="let aux">{{ aux.capital}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Dias">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Dias</mat-header-cell>
+    <mat-cell *matCellDef="let aux">{{ aux.dias.descripcion}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Monto">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Monto</mat-header-cell>
+    <mat-cell *matCellDef="let aux">{{ aux.monto}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Estado">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+    <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+    </ng-container>
+         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+         <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[8,9,10]" showFirstLastButtons></mat-paginator>
+   </div>
+</div>
+

@@ -50,7 +50,7 @@ export const routes: Routes = [
     {path:"verCrudCoordenada", component:CrudCoordenadaComponent },
     {path:"verCrudCuenta", component:CrudCuentaComponent },
     {path:"verCrudDataCatalogo", component:CrudDataCatalogoComponent },
-  { path: "verCrudEntidadFinanciera", component: CrudEntidadFinancieraComponent },
+    { path: "verCrudEntidadFinanciera", component: CrudEntidadFinancieraComponent },
     {path:"verCrudGrupo", component:CrudGrupoComponent},
     {path:"verCrudMontoPrestamo", component:CrudMontoPrestamoComponent },
     {path:"verCrudPrestatario", component:CrudPrestatarioComponent },

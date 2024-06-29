@@ -11,9 +11,22 @@ const baseUrl = AppSettings.API_ENDPOINT+ '/montoPrestamo';
 export class MontoPrestamoService {
   constructor(private http:HttpClient) { }
   registro(bean:MontoPrestamo):Observable<any>{
-    return this.http.post(baseUrl,bean)
+    return this.http.post(baseUrl+"/registrar",bean)
   }
-  montoPrestamoListaPorDias(idDataCatalogo: number): Observable<any> {
-    return this.http.get(`${baseUrl}/listaPorDias/${idDataCatalogo}`);
+  actualizar(bean:MontoPrestamo):Observable<any>{
+    return this.http.put(baseUrl+"/actualizar",bean)
+  }
+  eliminar(id:number):Observable<any>{
+    return this.http.delete(baseUrl+"/eliminar/"+id)
+  }
+  montoPrestamoListaPorDias(dia: string): Observable<any> {
+    return this.http.get(`${baseUrl}/listaPorDias/${dia}`);
+  }
+  lista(): Observable<any> {
+    return this.http.get(baseUrl+"/listar");
+  }
+  consulta(dia:string,capital:string,monto:string,estado:number): Observable<any> {
+    return this.http.get(baseUrl+"/consulta?dias="+dia+"&capital="+capital+"&monto="+monto+"&estado="+estado);
   }
 }
+

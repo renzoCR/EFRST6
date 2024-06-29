@@ -19,6 +19,7 @@ import { Coordenada } from '../../models/coordenada.model';
 })
 
 export class ConsultaCoordenadaComponent {
+    
 
   latitud :string="";
   estado: number = 1;
