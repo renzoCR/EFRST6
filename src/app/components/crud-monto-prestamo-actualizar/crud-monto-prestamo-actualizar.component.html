@@ -1,1 +1,105 @@
-<p>crud-monto-prestamo-actualizar works!</p>
+
+<div class="container" style="max-width: 50%;">
+    <form [formGroup]="formRegistrar" style="margin: 0 auto;">
+      <div class="mat-dialog-content">
+        <div class="row">
+          <mat-toolbar color="primary">
+            <span>Registro de Monto Prestamo</span>
+          </mat-toolbar>
+        </div>
+  
+        <div class="row" style="margin-top: 3%">
+          <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label>Capital</mat-label>
+              <input
+                matInput
+                [(ngModel)]="monto.capital"
+                formControlName="validaCapital"
+              />
+              <mat-hint
+              style="color: red"
+              *ngIf="formRegistrar.controls.validaCapital.touched"
+            >
+              <span
+                *ngIf="formRegistrar.controls.validaCapital.hasError('required')"
+              >
+                El Capital es requerido
+              </span>
+              <span
+                *ngIf="formRegistrar.controls.validaCapital.hasError('pattern')"
+              >
+                El Capital debe ser entero
+              </span>
+            </mat-hint>
+            </mat-form-field>
+          </div>
+          <div style="margin-right: 5%;margin-left: -10%;">
+            <mat-form-field appearance="fill">
+              <mat-label>Dias</mat-label>
+              <mat-select
+                [(ngModel)]="monto.dias!.idDataCatalogo"
+                formControlName="validaDias"
+              >
+                <mat-option value="-1">[Seleccione]</mat-option>
+                <mat-option *ngFor="let x of dias" [value]="x.idDataCatalogo">
+                  {{ x.descripcion }}
+                </mat-option>
+              </mat-select>
+              <mat-hint
+                style="color: red"
+                *ngIf="formRegistrar.controls.validaDias.touched"
+              >
+                <span
+                  *ngIf="formRegistrar.controls.validaDias.hasError('min')"
+                >
+                  Los Dias son requeridos
+                </span>
+              </mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill">
+              <mat-label>Monto</mat-label>
+              <input
+                matInput
+                [(ngModel)]="monto.monto"
+                formControlName="validaMonto"
+              />
+              <mat-hint
+              style="color: red"
+              *ngIf="formRegistrar.controls.validaMonto.touched"
+            >
+              <span
+                *ngIf="formRegistrar.controls.validaMonto.hasError('required')"
+              >
+                El Monto es requerido
+              </span>
+              <span
+                *ngIf="formRegistrar.controls.validaMonto.hasError('pattern')"
+              >
+                El Monto debe ser entero o real
+              </span>
+            </mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 3%; margin-left: auto; margin-right: auto; max-width: fit-content;">
+            <div mat-dialog-actions>
+            <button mat-raised-button 
+                           type="submit" 
+                           color="primary" 
+                           [disabled]="formRegistrar.invalid"
+                           [mat-dialog-close]="1"
+                           (click)="registro()">Actualizar
+            </button>
+           <button mat-button 
+                           type="submit" 
+                           [mat-dialog-close]="0"    
+                           >Salir
+           </button>
+           </div>
+       </div>
+      </div>
+    </form>
+  </div>
