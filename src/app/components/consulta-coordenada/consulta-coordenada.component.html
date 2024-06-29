@@ -1,1 +1,71 @@
-<p>consulta-coordenada works!</p>
+<app-menu></app-menu>
+<div class="container">
+   <div class="row">
+      <mat-toolbar color="primary">
+         <span>Consulta Coordenada</span>
+      </mat-toolbar>
+   </div>
+   <div class="grid-container">
+      <mat-form-field style="margin-top: 13px;" class="form-item">
+         <mat-label>Latitud</mat-label>
+         <input matInput [(ngModel)]="latitud">
+      </mat-form-field>
+
+      <div class="form-item">
+         <label for="departamento">Departamento</label>
+         <select id="departamento" name="departamento" class="form-control" (change)="Provincia()"
+            [(ngModel)]="Departamentos">
+            <option value="-1"></option>
+            <option *ngFor="let aux of departamento" [value]="aux">{{ aux }}</option>
+         </select>
+      </div>
+
+      <div class="form-item">
+         <label for="provincia">Provincia</label>
+         <select id="provincia" name="provincia" class="form-control" (change)="Distrito()"
+            [(ngModel)]="Provincia">
+            <option value="-1">[Seleccione...]</option>
+            <option *ngFor="let aux of provincia" [value]="aux">{{ aux }}</option>
+         </select>
+      </div>
+      <div class="form-item">
+         <label for="distrito">Distrito</label>
+         <select id="distrito" name="distrito" class="form-control" [(ngModel)]="Distrito">
+            <option value="-1">[Seleccione...]</option>
+            <option *ngFor="let aux of distrito" [value]="aux.idUbigeo">{{ aux.distrito }}</option>
+         </select>
+      </div>
+      <div class="form-item custom-control custom-switch">
+         <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado" />
+         <label class="custom-control-label" for="idEstado">Estado</label>
+      </div>
+   </div>
+   <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center">
+      <button mat-raised-button type="button" color="primary" style="width: 100px;"
+         (click)="consultar()">Filtrar</button>
+   </div>
+   <div class="row" style="margin-top: 3%">
+      <mat-table #table class="mat-cell" [dataSource]="dataSource">
+         <ng-container matColumnDef="idCoordenada">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+            <mat-cell *matCellDef="let aux">{{ aux.idCoordenada}}</mat-cell>
+         </ng-container>
+         <ng-container matColumnDef="latitud">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Latitud</mat-header-cell>
+            <mat-cell *matCellDef="let aux">{{ aux.latitud}}</mat-cell>
+         </ng-container>
+         <ng-container matColumnDef="ubigeo">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Ubigeo</mat-header-cell>
+            <mat-cell *matCellDef="let aux">{{ aux.ubigeo.departamento}} - {{ aux.ubigeo.provincia}} - {{
+               aux.ubigeo.distrito}}</mat-cell>
+            </ng-container>
+         <ng-container matColumnDef="estado">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+            <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+         </ng-container>
+         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+         <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[8,9,10]" showFirstLastButtons></mat-paginator>
+   </div>
+</div>
