@@ -64,6 +64,8 @@ export class AgregarPrestatarioComponent implements OnInit {
   });
 
 
+
+
   //usuario en sesion
   objUsuario: Usuario = {};
 
