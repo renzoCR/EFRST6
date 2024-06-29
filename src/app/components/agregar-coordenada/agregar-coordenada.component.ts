@@ -46,8 +46,8 @@ export class AgregarCoordenadaComponent {
   ) { }
 
   formRegistrar = this.formBuilder.group({
-    validaLatitud: ['', [Validators.required, Validators.min(1), Validators.pattern('(([0-9]{1,})|([0-9]{1,}.[0-9]{1,3}))')]],
-    validaLongitud: ['', [Validators.required, Validators.min(1), Validators.pattern('(([0-9]{1,})|([0-9]{1,}.[0-9]{1,3}))')]],
+    validaLatitud: ['', [Validators.required, Validators.min(1), Validators.pattern('(([0-9]{1,})|([0-9]{1,}.[0-9]{1,7}))')]],
+    validaLongitud: ['', [Validators.required, Validators.min(1), Validators.pattern('(([0-9]{1,})|([0-9]{1,}.[0-9]{1,7}))')]],
     validaDepartamento: ['', [Validators.min(1)]],
     validaProvincia: ['', [Validators.min(1)]],
     validaDistrito: ['', [Validators.min(1)]],
@@ -100,6 +100,8 @@ export class AgregarCoordenadaComponent {
 
     );
   }
+
+  
 
   listaProvincia() {
     this.utilService.listaProvincias(this.coordenada.ubigeo?.departamento).subscribe(

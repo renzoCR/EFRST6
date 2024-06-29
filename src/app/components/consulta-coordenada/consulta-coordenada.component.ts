@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './consulta-coordenada.component.css'
 })
 export class ConsultaCoordenadaComponent {
+    
 
 }
