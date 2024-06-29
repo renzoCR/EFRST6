@@ -1,1 +1,179 @@
-<p>consulta-solicitud-prestamo works!</p>
+<app-menu></app-menu>
+<div class="container">
+  <div class="row">
+    <mat-toolbar color="primary">
+      <span>Consulta Solicitud Préstamo</span>
+    </mat-toolbar>
+  </div>
+
+  <div class="row" style="margin-top: 3%">
+    <form [formGroup]="myForm" class="col-12">
+      <div class="grid-container">
+        <!-- Primera Fila de Inputs -->
+        <div class="grid-item">
+          <mat-form-field appearance="fill">
+            <mat-label>Días</mat-label>
+            <input matInput formControlName="dias" type="number" />
+            <mat-error *ngIf="isValidField('dias')">
+              {{ getFieldError("dias") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="grid-item">
+          <mat-form-field appearance="fill">
+            <mat-label>Capital</mat-label>
+            <input matInput formControlName="capital" type="number" />
+            <mat-error *ngIf="isValidField('capital')">
+              {{ getFieldError("capital") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Segunda Fila de Inputs -->
+        <div class="grid-item">
+          <mat-form-field appearance="fill">
+            <mat-label>Monto Pagar</mat-label>
+            <input matInput formControlName="montoPagar" type="number" />
+            <mat-error *ngIf="isValidField('montoPagar')">
+              {{ getFieldError("montoPagar") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Tercera Fila de Inputs -->
+        <div class="grid-item">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de Inicio del Préstamo</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="fechaInicioPrestamo"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="isValidField('fechaInicioPrestamo')">
+              {{ getFieldError("fechaInicioPrestamo") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="grid-item">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de Fin del Préstamo</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerFin"
+              formControlName="fechaFinPrestamo"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerFin"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+            <mat-error *ngIf="isValidField('fechaFinPrestamo')">
+              {{ getFieldError("fechaFinPrestamo") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Estado -->
+        <div class="grid-item">
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <div class="custom-control custom-switch">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="idEstado"
+                name="estado"
+                formControlName="estado"
+              />
+              <label class="custom-control-label" for="idEstado">Estado</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div
+          class="row"
+          style="
+            margin-top: 3%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <div class="col-6">
+            <button
+              mat-raised-button
+              type="button"
+              color="primary"
+              style="width: 100px"
+              (click)="filter()"
+            >
+              Filtrar
+            </button>
+          </div>
+          <div class="col-6">
+            <button
+              mat-raised-button
+              type="submit"
+              color="warn"
+              style="width: 100px"
+              (click)="exportarPDF()"
+            >
+              PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Tabla de Resultados -->
+  <div class="row" style="margin-top: 3%">
+    <mat-table #table class="mat-cell" [dataSource]="dataSource">
+      <ng-container matColumnDef="idSolicitud">
+        <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.idSolicitud }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="capital">
+        <mat-header-cell *matHeaderCellDef>Capital</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.capital }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="montoPagar">
+        <mat-header-cell *matHeaderCellDef>Monto</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.montoPagar }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="dias">
+        <mat-header-cell *matHeaderCellDef>Días</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.dias.idDataCatalogo }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="fechaInicioPrestamo">
+        <mat-header-cell *matHeaderCellDef>Fecha Inicio</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.fechaInicioPrestamo }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="fechaFinPrestamo">
+        <mat-header-cell *matHeaderCellDef>Fecha Fin</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{ aux.fechaFinPrestamo }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+        <mat-cell *matCellDef="let aux">{{
+          aux.estado ? "Activo" : "Inactivo"
+        }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[6, 8, 10]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
