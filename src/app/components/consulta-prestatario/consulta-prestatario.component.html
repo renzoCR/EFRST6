@@ -1,1 +1,77 @@
-<p>consulta-prestatario works!</p>
+<app-menu></app-menu>
+<div class="container">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span>Consulta Prestatario</span>
+        </mat-toolbar>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-6">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="nombres">
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>DNI</mat-label>
+            <input matInput [(ngModel)]="dni">
+        </mat-form-field>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-6">
+            <mat-label>Usuario</mat-label>
+            <input matInput [(ngModel)]="login">
+        </mat-form-field>
+        <div class="col-md-6" style="display: flex; align-items: center; justify-content: center">
+            <div class="custom-control custom-switch">
+                <input [(ngModel)]="estado" type="checkbox" class="custom-control-input" id="idEstado" name="estado"
+                    [checked]="true" />
+                <label class="custom-control-label" for="idEstado">Estado</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 3%; display: flex; align-items: center; justify-content: center">
+        <button (click)="consultar()" mat-raised-button type="button" color="primary"
+            style="width: 100px;">Filtrar</button>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idEjemplo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idUsuario }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="descripcion">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.nombres}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="dias">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Usuario</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.login}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="longitud">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Dni</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.dni}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="pais">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Correo</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.correo}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="ubigeo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.fechaNacimiento }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+
+    </div>
+</div>

@@ -1,145 +1,96 @@
 <div class="container">
-    <form [formGroup]="formRegistrar">
-      <div class="mat-dialog-content">
-        <div class="row">
-          <mat-toolbar color="primary">
-            <span>Actualiza Solicitud</span>
-          </mat-toolbar>
-        </div>
-        <div class="row" style="margin-top: 3%">
-          <mat-form-field class="col-md-4">
-            <mat-label>Dias</mat-label>
-            <mat-select
-              [(ngModel)]="solicitud.dias"
-              formControlName="dias"
-              (selectionChange)="onDiaSelected($event)"
-            >
-              <mat-option value="-1"> [Seleccione] </mat-option>
-              <mat-option *ngFor="let x of diasList" [value]="x">
-                {{ x.descripcion }}
-              </mat-option>
-            </mat-select>
-            <mat-hint
-              style="color: red"
-              *ngIf="formRegistrar.controls.dias.touched"
-            >
-              <span *ngIf="formRegistrar.controls.dias.hasError('min')">
-                El país es requerido
-              </span>
-            </mat-hint>
-          </mat-form-field>
-          <mat-form-field class="col-md-4">
-            <mat-label>Capital</mat-label>
-            <mat-select [(ngModel)]="solicitud.capital" formControlName="capital" (selectionChange)="onCapitalSelected($event)">
-              <mat-option value="-1"> [Seleccione] </mat-option>
-              <mat-option *ngFor="let x of capitalList" [value]="x">
-                {{ x.capital }}
-              </mat-option>
-            </mat-select>
-            <mat-hint
-              style="color: red"
-              *ngIf="formRegistrar.controls.capital.touched"
-            >
-              <span *ngIf="formRegistrar.controls.capital.hasError('min')">
-                El capital es requerido
-              </span>
-            </mat-hint>
-          </mat-form-field>
-          <mat-form-field class="col-md-4">
-            <mat-label>Monto a pagar</mat-label>
-            <input
-              matInput
-              [(ngModel)]="solicitud.montoPagar"
-              formControlName="montoPagar"
-            />
-            <mat-hint
-              style="color: red"
-              *ngIf="formRegistrar.controls.montoPagar.touched"
-            >
-              <span
-                *ngIf="formRegistrar.controls.montoPagar.hasError('required')"
-              >
-                El monto a pagar es requerido
-              </span>
-            </mat-hint>
-          </mat-form-field>
-  
-          <mat-form-field class="col-md-4">
-            <mat-label>Fecha de Inicio de prestamo</mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              matInput
-              [(ngModel)]="solicitud.fechaInicioPrestamo"
-              formControlName="fechaInicioPrestamo"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-hint
-              style="color: red"
-              *ngIf="formRegistrar.controls.fechaInicioPrestamo.touched"
-            >
-              <span
-                *ngIf="
+  <form [formGroup]="formRegistrar">
+    <div class="mat-dialog-content">
+      <div class="row">
+        <mat-toolbar color="primary">
+          <span>Actualiza Solicitud</span>
+        </mat-toolbar>
+      </div>
+      <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+          <mat-label>Dias</mat-label>
+          <mat-select [(ngModel)]="solicitud.dias" formControlName="dias" (selectionChange)="onDiaSelected($event)">
+            <mat-option value="-1"> [Seleccione] </mat-option>
+            <mat-option *ngFor="let x of diasList" [value]="x">
+              {{ x.descripcion }}
+            </mat-option>
+          </mat-select>
+          <mat-hint style="color: red" *ngIf="formRegistrar.controls.dias.touched">
+            <span *ngIf="formRegistrar.controls.dias.hasError('min')">
+              El país es requerido
+            </span>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Capital</mat-label>
+          <mat-select [(ngModel)]="solicitud.capital" formControlName="capital"
+            (selectionChange)="onCapitalSelected($event)">
+            <mat-option value="-1"> [Seleccione] </mat-option>
+            <mat-option *ngFor="let x of capitalList" [value]="x">
+              {{ x.capital }}
+            </mat-option>
+          </mat-select>
+          <mat-hint style="color: red" *ngIf="formRegistrar.controls.capital.touched">
+            <span *ngIf="formRegistrar.controls.capital.hasError('min')">
+              El capital es requerido
+            </span>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+          <mat-label>Monto a pagar</mat-label>
+          <input matInput [(ngModel)]="solicitud.montoPagar" formControlName="montoPagar" />
+          <mat-hint style="color: red" *ngIf="formRegistrar.controls.montoPagar.touched">
+            <span *ngIf="formRegistrar.controls.montoPagar.hasError('required')">
+              El monto a pagar es requerido
+            </span>
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>Fecha de Inicio de prestamo</mat-label>
+          <input matInput [matDatepicker]="picker" matInput [(ngModel)]="solicitud.fechaInicioPrestamo"
+            formControlName="fechaInicioPrestamo" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint style="color: red" *ngIf="formRegistrar.controls.fechaInicioPrestamo.touched">
+            <span *ngIf="
                   formRegistrar.controls.fechaInicioPrestamo.hasError('required')
-                "
-              >
-                La fecha es requerida
-              </span>
-            </mat-hint>
-          </mat-form-field>
-        </div>
-        <div class="row" style="margin-top: 3%">
-          <mat-form-field class="col-md-4">
-            <mat-label>Usuario Prestatario</mat-label>
-            <mat-select
-              [(ngModel)]="solicitud.usuarioPrestatario"
-              formControlName="usuarioPrestatario"
-            >
-              <mat-option value="-1"> [Seleccione] </mat-option>
-              <mat-option *ngFor="let x of prestarioList" [value]="x">
-                {{ x.nombreCompleto }}
-              </mat-option>
-            </mat-select>
-            <mat-hint
-              style="color: red"
-              *ngIf="formRegistrar.controls.usuarioPrestatario.touched"
-            >
-              <span
-                *ngIf="formRegistrar.controls.usuarioPrestatario.hasError('min')"
-              >
-                El usuario Prestatario es requerido
-              </span>
-            </mat-hint>
-          </mat-form-field>
-        </div>
-        <div
-          class="row"
-          style="
+                ">
+              La fecha es requerida
+            </span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+          <mat-label>Usuario Prestatario</mat-label>
+          <mat-select [(ngModel)]="solicitud.usuarioPrestatario" formControlName="usuarioPrestatario">
+            <mat-option value="-1"> [Seleccione] </mat-option>
+            <mat-option *ngFor="let x of prestarioList" [value]="x">
+              {{ x.nombreCompleto }}
+            </mat-option>
+          </mat-select>
+          <mat-hint style="color: red" *ngIf="formRegistrar.controls.usuarioPrestatario.touched">
+            <span *ngIf="formRegistrar.controls.usuarioPrestatario.hasError('min')">
+              El usuario Prestatario es requerido
+            </span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="row" style="
             margin-top: 3%;
             margin-left: auto;
             margin-right: auto;
             max-width: fit-content;
-          "
-        >
-          <div mat-dialog-actions>
-            <button
-              mat-raised-button
-              type="button"
-              color="primary"
-              [disabled]="formRegistrar.invalid"
-              [mat-dialog-close]="1"
-              (click)="register()"
-            >
-              Actualiza
-            </button>
-            <button mat-button type="submit" [mat-dialog-close]="2">Salir</button>
-          </div>
+          ">
+        <div mat-dialog-actions>
+          <button mat-raised-button type="button" color="primary" [disabled]="formRegistrar.invalid"
+            [mat-dialog-close]="1" (click)="register()">
+            Actualiza
+          </button>
+          <button mat-button type="submit" [mat-dialog-close]="2">Salir</button>
         </div>
       </div>
-    </form>
-  </div>
-  
+    </div>
+  </form>
+</div>
