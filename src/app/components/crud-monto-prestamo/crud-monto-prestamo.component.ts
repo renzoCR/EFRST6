@@ -40,7 +40,7 @@ export class CrudMontoPrestamoComponent {
       return
     }
     console.log("refreshTable [inic]"); 
-    this.service.montoPrestamoListaPorDias(this.filtro).subscribe(x =>{
+    this.service.montoPrestamoListaPorDias2(this.filtro).subscribe(x =>{
       this.dataSource = new MatTableDataSource<MontoPrestamo>(x);
       this.dataSource.pagina = this.pagina
     }); console.log("refreshTable [final]");
