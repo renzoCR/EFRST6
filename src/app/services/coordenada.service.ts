@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 
 
 
-const baseUrl = AppSettings.API_ENDPOINT + '/coordenada';
 const baseUrlCrud = AppSettings.API_ENDPOINT+ '/crudCoordenada';
 
 

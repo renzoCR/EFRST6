@@ -19,8 +19,11 @@ export class MontoPrestamoService {
   eliminar(id:number):Observable<any>{
     return this.http.delete(baseUrl+"/eliminar/"+id)
   }
-  montoPrestamoListaPorDias(dia: string): Observable<any> {
+  montoPrestamoListaPorDias2(dia: string): Observable<any> {
     return this.http.get(`${baseUrl}/listaPorDias/${dia}`);
+  }
+  montoPrestamoListaPorDias(idDataCatalogo: number): Observable<any> {
+    return this.http.get(`${baseUrl}/listaPorDias2/${idDataCatalogo}`);
   }
   lista(): Observable<any> {
     return this.http.get(baseUrl+"/listar");
