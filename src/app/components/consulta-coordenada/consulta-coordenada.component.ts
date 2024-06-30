@@ -22,8 +22,8 @@ export class ConsultaCoordenadaComponent {
     
 
   latitud :string="";
-  estado: number = 1;
-  estado2: number =1;
+  estado: boolean = true;
+
 
   Departamentos: String = '-1';
   Provincias: string = '-1';
@@ -62,7 +62,7 @@ export class ConsultaCoordenadaComponent {
     console.log("distrito", this.Distrito);
     this.coordenadaService.consultaCoordenada(
       this.latitud,
-       this.estado2, 
+       this.estado?1:0, 
        this.Distritos
      ).subscribe(
       x =>{
